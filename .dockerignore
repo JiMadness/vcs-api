@@ -5,6 +5,5 @@
 *docker-compose*
 node_modules
 temp
-test
 *.env*
 
