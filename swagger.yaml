@@ -1,0 +1,40 @@
+swagger: "2.0"
+info:
+  description: "This is an API that can run some Python script on an uploaded file, and return the result of the script back to the requester."
+  version: "1.0.0"
+  title: "CSV API"
+  contact:
+    email: "jimadness12@gmail.com"
+basePath: "/"
+tags:
+- name: "CSV"
+  description: "CSV upload"
+schemes:
+- "http"
+paths:
+  /csv:
+    post:
+      tags:
+      - "csv"
+      summary: "Process a CSV file"
+      description: "Process a CSV file and get CSV results"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "text/csv"
+      parameters:
+      - in: "formData"
+        name: "csv"
+        description: "CSV file to be processed"
+        type: "file"
+        required: true
+      responses:
+        "400":
+          description: "Invalid input"
+        "500":
+          description: "Internal error while processing file"
+        "200":
+          description: "OK"
+          schema:
+              type: "string"
+              format: "csv"
